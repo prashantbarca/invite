@@ -169,7 +169,7 @@ Would you still like to know how to use impress.js?
 				-->
 				<div id="bored" class="step slide" data-x="-1000" data-y="-1500">
 					<q>Wedding Invitation</q>
-					<img src="1.jpg" alt="" height="500" width="1500"/>
+					<img src="1.jpg" alt="" />
 				</div>
 
 				<!--
@@ -209,7 +209,7 @@ Would you still like to know how to use impress.js?
 				-->
 
 				<div id="big" class="step" data-x="3500" data-y="2100" data-rotate="180" data-scale="6">
-					<img src="2.jpg" alt="" height="500" width="1500"/>
+					<img src="2.jpg" alt="" />
 				</div>
 
 				<!--
@@ -222,7 +222,7 @@ Would you still like to know how to use impress.js?
 
 				-->
 				<div id="tiny" class="step" data-x="2825" data-y="2325" data-z="-3000" data-rotate="300" data-scale="1">
-					<img src="3.jpg" alt="" height="500" width="1500"/>
+					<img src="3.jpg" alt="" />
 				</div>
 
 				<!--
@@ -245,6 +245,81 @@ Would you still like to know how to use impress.js?
 				Only one current step has the `present` class.
 
 				-->
+				<div id="its-in-3d" class="step" data-x="6200" data-y="4300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
+					<h2>For accomodation and other help</h2>
+					<h3>RSVP : Prashant Anantharaman</h3>
+					<h3>prashant.barca@gmail.com</h3>
+					<h3>+91 9791190892</h3>
+				</div>
+
+				<!--
+
+				So to make a summary of all the possible attributes used to position presentation steps, we have:
+
+				* `data-x`, `data-y`, `data-z` - they define the position of **the center** of step element on
+				the canvas in pixels; their default value is 0;
+				* `data-rotate-x`, `data-rotate-y`, 'data-rotate-z`, `data-rotate` - they define the rotation of
+				the element around given axis in degrees; their default value is 0; `data-rotate` and `data-rotate-z`
+				are exactly the same;
+				* `data-scale` - defines the scale of step element; default value is 1
+
+				These values are used by impress.js in CSS transformation functions, so for more information consult
+				CSS transfrom docs: https://developer.mozilla.org/en/CSS/transform
+
+				-->
+				<div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10">
+				</div>
+
+			</div>
+
+			<!--
+
+			Hint is not related to impress.js in any way.
+
+			But it can show you how to use impress.js features in creative way.
+
+			When the presentation step is shown (selected) its element gets the class of "active" and the body element
+			gets the class based on active step id `impress-on-ID` (where ID is the step's id)... It may not be
+			so clear because of all these "ids" in previous sentence, so for example when the first step (the one with
+			the id of `bored`) is active, body element gets a class of `impress-on-bored`.
+
+			This class is used by this hint below. Check CSS file to see how it's shown with delayed CSS animation when
+			the first step of presentation is visible for a couple of seconds.
+
+			...
+
+			And when it comes to this piece of JavaScript below ... kids, don't do this at home ;)
+			It's just a quick and dirty workaround to get different hint text for touch devices.
+			In a real world it should be at least placed in separate JS file ... and the touch content should be
+			probably just hidden somewhere in HTML - not hard-coded in the script.
+
+			Just sayin' ;)
+
+			-->
+			<div class="hint">
+				<p>Use a spacebar or arrow keys to navigate</p>
+			</div>
+			<script>
+				if ("ontouchstart" in document.documentElement) { 
+					document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+				}
+			</script>
+
+			<!--
+
+			Last, but not least.
+
+			To make all described above really work, you need to include impress.js in the page.
+			I strongly encourage to minify it first.
+
+			In here I just include full source of the script to make it more readable.
+
+			You also need to call a `impress().init()` function to initialize impress.js presentation.
+			And you should do it in the end of your document. Not only because it's a good practice, but also
+			because it should be done when the whole document is ready.
+			Of course you can wrap it in any kind of "DOM ready" event, but I was too lazy to do so ;)
+
+			-->
 			<script src="js/impress.js"></script>
 			<script>impress().init();</script>
 
